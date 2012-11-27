@@ -31,6 +31,6 @@ namespace ZeroEngine.GraphicRenderer.ParticleSystem
     {
         Emitter[] m_Emitters = null;
 
-
+        ParticleSimulator m_Simulator;
     }
 }
