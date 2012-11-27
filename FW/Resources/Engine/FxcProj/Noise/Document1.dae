@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+	<asset>
+		<contributor>
+			<author>Administrator</author>
+			<authoring_tool>NVIDIA FX Composer 2.5</authoring_tool>
+			<comments/>
+			<copyright/>
+		</contributor>
+		<created>2012-07-08T09:46:52Z</created>
+		<keywords>FXComposer, NVIDIA</keywords>
+		<modified>2012-07-08T11:00:58Z</modified>
+		<subject/>
+		<title/>
+		<unit/>
+		<up_axis>Y_UP</up_axis>
+	</asset>
+	<library_visual_scenes>
+		<visual_scene id="DefaultScene" name="DefaultScene">
+			<node sid="__fxc_remove_node"/>
+			<evaluate_scene name="Evaluate FxMain_Noise_Material">
+				<render camera_node="">
+					<instance_effect url="#Material"/>
+				</render>
+			</evaluate_scene>
+			<extra type="evaluatescene_enables">
+				<technique profile="NVIDIA_FXCOMPOSER">
+					<true/>
+				</technique>
+			</extra>
+		</visual_scene>
+	</library_visual_scenes>
+	<library_images>
+		<image id="Gen_PermTexture" name="Gen_PermTexture">
+			<init_from>file:///g:/mypjt/_slimdx2012/resources/Engine/Textures/Gen_PermTexture.dds</init_from>
+		</image>
+		<image id="Gen_GradTexture" name="Gen_GradTexture">
+			<init_from>file:///g:/mypjt/_slimdx2012/resources/Engine/Textures/Gen_GradTexture.dds</init_from>
+		</image>
+	</library_images>
+	<library_effects>
+		<effect id="Effect" name="FxMain_Noise">
+			<profile_COMMON>
+				<technique sid="__fxc_remove_profile_COMMON">
+					<constant/>
+				</technique>
+			</profile_COMMON>
+			<extra type="import">
+				<technique profile="NVIDIA_FXCOMPOSER">
+					<import url="../../Shaders/FxMain_Noise.fx" compiler_options="" profile="fx"/>
+				</technique>
+			</extra>
+		</effect>
+	</library_effects>
+	<library_materials>
+		<material id="Material" name="FxMain_Noise_Material">
+			<instance_effect url="#Effect">
+				<technique_hint platform="PC-D3D10" ref="Main"/>
+				<setparam ref="ViewportSize">
+					<float2>601 502</float2>
+				</setparam>
+				<setparam ref="Script">
+					<float>0.8</float>
+				</setparam>
+				<setparam ref="g_ClearDepth">
+					<float>1</float>
+				</setparam>
+				<setparam ref="g_ClearColor">
+					<float4>0 0 0 0</float4>
+				</setparam>
+				<setparam ref="g_MainLightDir">
+					<float3>0 0 0</float3>
+				</setparam>
+				<setparam ref="g_MainLightCol">
+					<float3>0 0 0</float3>
+				</setparam>
+				<setparam ref="g_PointLight0Pos">
+					<float3>0 0 0</float3>
+				</setparam>
+				<setparam ref="g_PointLight0Col">
+					<float3>0 0 0</float3>
+				</setparam>
+				<setparam ref="ViewXf">
+					<float4x4>0.707107 -3.04242e-008 -0.707107 -6.71992e-007 -0.408248 0.816496 -0.408248 4.59689e-008 0.57735 0.57735 0.57735 -28.4863 0 0 -0 1</float4x4>
+				</setparam>
+				<setparam ref="ProjectionXf">
+					<float4x4>2.2949 0 0 0 0 2.74748 0 0 0 0 -1.06408 -3.44366 0 0 -1 0</float4x4>
+				</setparam>
+				<setparam ref="ViewIXf">
+					<float4x4>0.707107 -0.408248 0.57735 16.4466 -7.01425e-008 0.816497 0.57735 16.4466 -0.707107 -0.408248 0.57735 16.4466 -0 -0 -0 1</float4x4>
+				</setparam>
+				<setparam ref="ProjectionIXf">
+					<float4x4>0.435749 0 -0 -0 0 0.36397 -0 -0 0 0 -0 -1 0 0 -0.290389 0.308998</float4x4>
+				</setparam>
+				<setparam ref="ViewProjectionIXf">
+					<float4x4>0.308121 -0.14859 -4.7759 4.50461 6.86493e-008 0.29718 -4.7759 4.50461 -0.308121 -0.14859 -4.7759 4.50461 4.24236e-010 -1.63543e-009 -0.290389 0.308998</float4x4>
+				</setparam>
+				<setparam ref="WorldXf">
+					<float4x4>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</float4x4>
+				</setparam>
+				<setparam ref="WorldIXf">
+					<float4x4>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</float4x4>
+				</setparam>
+				<setparam ref="WorldITXf">
+					<float4x4>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</float4x4>
+				</setparam>
+				<setparam ref="g_PermTexture">
+					<surface type="2D">
+						<init_from>Gen_PermTexture</init_from>
+						<format>R8G8B8A8</format>
+						<size>256 1 1</size>
+					</surface>
+				</setparam>
+				<setparam ref="g_GradTexture">
+					<surface type="2D">
+						<init_from>Gen_GradTexture</init_from>
+						<format>R8G8B8A8</format>
+						<size>16 1 1</size>
+					</surface>
+				</setparam>
+			</instance_effect>
+		</material>
+	</library_materials>
+	<scene>
+		<instance_visual_scene url="#DefaultScene"/>
+	</scene>
+</COLLADA>

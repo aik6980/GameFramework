@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+	<asset>
+		<contributor>
+			<author>Administrator</author>
+			<authoring_tool>NVIDIA FX Composer 2.5</authoring_tool>
+			<comments/>
+			<copyright/>
+		</contributor>
+		<created>2012-07-08T21:26:39Z</created>
+		<keywords>FXComposer, NVIDIA</keywords>
+		<modified>2012-07-08T22:46:50Z</modified>
+		<subject/>
+		<title/>
+		<unit/>
+		<up_axis>Y_UP</up_axis>
+	</asset>
+	<library_visual_scenes>
+		<visual_scene id="DefaultScene" name="DefaultScene">
+			<node sid="__fxc_remove_node"/>
+			<evaluate_scene name="Evaluate">
+				<render camera_node="">
+					<instance_effect url="#Material"/>
+				</render>
+			</evaluate_scene>
+			<extra type="evaluatescene_enables">
+				<technique profile="NVIDIA_FXCOMPOSER">
+					<true/>
+				</technique>
+			</extra>
+		</visual_scene>
+	</library_visual_scenes>
+	<library_images>
+		<image id="Environment" name="Environment">
+			<init_from>../../Textures/Environment.jpg</init_from>
+		</image>
+	</library_images>
+	<library_effects>
+		<effect id="Effect" name="FxMain_Filters">
+			<profile_COMMON>
+				<technique sid="__fxc_remove_profile_COMMON">
+					<constant/>
+				</technique>
+			</profile_COMMON>
+			<extra type="import">
+				<technique profile="NVIDIA_FXCOMPOSER">
+					<import url="../../Shaders/FxMain_Filters.fx" compiler_options="" profile="fx"/>
+				</technique>
+			</extra>
+		</effect>
+	</library_effects>
+	<library_materials>
+		<material id="Material" name="FxMain_Filters_Material">
+			<instance_effect url="#Effect">
+				<technique_hint platform="PC-D3D10" ref="Main"/>
+				<technique_hint platform="PC-D3D" ref="Main"/>
+				<setparam ref="ViewportSize">
+					<float2>601 502</float2>
+				</setparam>
+				<setparam ref="Script">
+					<float>0.8</float>
+				</setparam>
+				<setparam ref="g_ClearColor">
+					<float4>0 0 0 0</float4>
+				</setparam>
+				<setparam ref="g_ClearNormal">
+					<float4>0.5 0.5 0.5 0</float4>
+				</setparam>
+				<setparam ref="g_ClearDepth">
+					<float>1</float>
+				</setparam>
+				<setparam ref="g_GameMrt0">
+					<surface type="2D">
+						<init_as_target/>
+						<format>A8B8G8R8</format>
+						<viewport_ratio>1 1</viewport_ratio>
+					</surface>
+				</setparam>
+				<setparam ref="g_GameDepth">
+					<surface type="DEPTH">
+						<init_as_target/>
+						<format>D24S8</format>
+						<viewport_ratio>1 1</viewport_ratio>
+					</surface>
+				</setparam>
+				<setparam ref="g_ResolveFromGame">
+					<surface type="2D">
+						<init_from>Environment</init_from>
+						<format>R8G8B8</format>
+						<size>640 479 1</size>
+					</surface>
+				</setparam>
+			</instance_effect>
+		</material>
+	</library_materials>
+	<scene>
+		<instance_visual_scene url="#DefaultScene"/>
+	</scene>
+</COLLADA>
