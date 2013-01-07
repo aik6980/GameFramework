@@ -55,8 +55,14 @@ namespace ZeroEngine.Scene.Camera
 
         public Matrix WorldToCam()
         {
+            Matrix m = Matrix.Invert(CamToWorld());
+            return m;
+        }
+
+        public Matrix CamToWorld()
+        {
             Vector3 offset = new Vector3(m_Position.X, m_Position.Y, m_Position.Z);
-            Matrix m = Matrix.Invert(Matrix.RotationQuaternion(m_Orientation) * Matrix.Translation(offset));
+            Matrix m = Matrix.RotationQuaternion(m_Orientation) * Matrix.Translation(offset);
             return m;
         }
 

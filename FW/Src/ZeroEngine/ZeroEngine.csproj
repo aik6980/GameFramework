@@ -111,7 +111,9 @@
     <Compile Include="Resource\Mesh.cs" />
     <Compile Include="Scene\Camera\Camera.cs" />
     <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Utillity\Timer.cs" />
     <Compile Include="World\Entity.cs" />
+    <Compile Include="World\RandomGenerator.cs" />
     <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>

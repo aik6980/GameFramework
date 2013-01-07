@@ -12,6 +12,7 @@ using ZeroEngine.Scene.Camera;
 
 using ZeroEngine.GraphicRenderer;
 using ZeroEngine.GraphicRenderer.Rendercraft;
+using ZeroEngine.GraphicRenderer.ParticleSystem;
 
 namespace ZeroEngine.Scene
 {
@@ -42,8 +43,9 @@ namespace ZeroEngine.Scene
         Dictionary<string, Renderer> m_RendererList;
 
         // test renderer
-        BasicRenderer m_BasicRenderer = new BasicRenderer();
-        CVolumeRenderer m_TerrainRenderer = new CVolumeRenderer();
+        BasicRenderer           m_BasicRenderer = new BasicRenderer();
+        CVolumeRenderer         m_TerrainRenderer = new CVolumeRenderer();
+        CParticleSystemRenderer m_ParticleRenderer = new CParticleSystemRenderer();
 
         // scene parameters
         RenderParamsListArray m_GlobalParams = new RenderParamsListArray();
@@ -66,12 +68,16 @@ namespace ZeroEngine.Scene
             dataRenderer.Load();
             dataRenderer.Generate(volData);
             m_TerrainRenderer = dataRenderer;
+
+            m_ParticleRenderer.Load();
         }
 
         public void Update()
         {
             m_currCamera.Update();
+
             m_BasicRenderer.PreRender();
+            m_ParticleRenderer.PreRender();
         }
 
         public void Render()
@@ -79,6 +85,7 @@ namespace ZeroEngine.Scene
             // set the scene variable
             var paramslist = new RenderParamsList();
             paramslist.Set("ViewXf", m_currCamera.WorldToCam());
+            paramslist.Set("ViewIXf", m_currCamera.CamToWorld());
             paramslist.Set("ProjectionXf", m_currCamera.CamToProj());
 
             m_GlobalParams.Push(paramslist);
@@ -102,6 +109,7 @@ namespace ZeroEngine.Scene
 
             m_TerrainRenderer.Render(m_GlobalParams);
             m_BasicRenderer.Render(m_GlobalParams);
+            m_ParticleRenderer.Render(m_GlobalParams);
 
             // draw the world
             foreach (World.Entity ent in m_currWorld.EntityList)

@@ -11,6 +11,7 @@ namespace ZeroEngine.World
     {
         // world const
         public static Vector3 WORLD_UP = Vector3.UnitY;
+        public static CRandomGenerator RAND = new CRandomGenerator();
 
         List<Entity> m_EntityList = new List<Entity>();
 

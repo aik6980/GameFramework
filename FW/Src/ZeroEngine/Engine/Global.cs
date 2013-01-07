@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using ZeroEngine.GraphicDevice;
+using ZeroEngine.Utillity;
 
 namespace ZeroEngine.Engine
 {
@@ -28,6 +29,12 @@ namespace ZeroEngine.Engine
         static Scene.Scene m_Scene = null;
 
         // low level subsystem
+        static CAccumTimer m_AppTimer = null;
+        internal static ZeroEngine.Utillity.CAccumTimer AppTimer
+        {
+            get { return m_AppTimer; }
+        }
+
         static Filesystem.FileSystem m_FileSystem = null;
         internal static Filesystem.FileSystem FileSystem
         {
@@ -67,6 +74,10 @@ namespace ZeroEngine.Engine
             m_InputManager = new Input.CInputManager();
             m_InputManager.Initialize(initStruct.hWindow);
 
+            // application time
+            m_AppTimer = new CAccumTimer();
+            m_AppTimer.Start();
+
             // initialize high level
             // world
             m_World = new World.CWorld();
@@ -80,6 +91,7 @@ namespace ZeroEngine.Engine
         public static void Update()
         {
             // pre-render
+            m_AppTimer.Tick();
             m_InputManager.Update();
             m_Scene.Update();
 
